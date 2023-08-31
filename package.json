@@ -1,0 +1,21 @@
+{
+  "name": "koishi-plugin-genshinvoice-vits",
+  "description": "群友想要的东西，所以为何不去用open-vits呢？我也不知道",
+  "version": "0.0.1",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "files": [
+    "lib",
+    "dist"
+  ],
+  "license": "MIT",
+  "scripts": {},
+  "keywords": [
+    "chatbot",
+    "koishi",
+    "plugin"
+  ],
+  "peerDependencies": {
+    "koishi": "^4.14.1"
+  }
+}
