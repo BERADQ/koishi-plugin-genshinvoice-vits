@@ -9,7 +9,6 @@
     "dist"
   ],
   "license": "MIT",
-  "scripts": {},
   "keywords": [
     "chatbot",
     "koishi",
@@ -18,10 +17,14 @@
     "原神",
     "genshin"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BERADQ/koishi-plugin-genshinvoice-vits.git"
+  },
   "peerDependencies": {
     "koishi": "^4.14.1"
   },
-  "devDependencies": {
+  "dependencies": {
     "@initencounter/vits": "^0.0.3"
   },
   "koishi": {
