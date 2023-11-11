@@ -25,7 +25,6 @@ class GenshinVits extends Vits {
 }
 
 namespace GenshinVits {
-  export const name = "genshinvoice-vits";
   export interface Config {
     language: string;
     speaker: string;
