@@ -8,6 +8,7 @@ class GenshinVits extends Vits {
     ctx.command("gsvits <content:text>", "语音生成", { checkArgCount: true })
       .alias("say")
       .action(async (v, t) => {
+        if (t.includes("/>")) return "输入的内容不是纯文本。";
         return await this.say({ input: t });
       });
   }
