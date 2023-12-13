@@ -12,7 +12,8 @@ class GenshinVits extends Vits {
       });
   }
   async say(options: Vits.Result): Promise<h> {
-    const { speaker, sdp_ratio, noise, noisew, length, language, text_prompt } = this.config;
+    const { sdp_ratio, noise, noisew, length, language, text_prompt } = this.config;
+    const speaker = typeof options.speaker_id === "number" ? Voice[options.speaker_id] : this.config.speaker;
     const payload = {
       data: [options.input, speaker, sdp_ratio, noise, noisew, length, language, null, text_prompt, "Text prompt"],
       fn_index: 0
