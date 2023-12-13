@@ -5,7 +5,7 @@ import { Language, Voice } from "./list";
 class GenshinVits extends Vits {
   constructor(ctx: Context, private config: GenshinVits.Config) {
     super(ctx)
-    ctx.command("gsvits <content:text>", "语音生成")
+    ctx.command("gsvits <content:text>", "语音生成", { checkArgCount: true })
       .alias("say")
       .action(async (v, t) => {
         return await this.say({ input: t });
