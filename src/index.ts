@@ -5,14 +5,16 @@ import { Language, Voice } from "./list";
 class GenshinVits extends Vits {
   constructor(ctx: Context, private config: GenshinVits.Config) {
     super(ctx)
-    ctx.command("gsvits <content:text>", "语音生成")
+    ctx.command("gsvits <content:text>", "语音生成", { checkArgCount: true })
       .alias("say")
       .action(async (v, t) => {
+        if (/<.*\/>/gm.test(t)) return "输入的内容不是纯文本。";
         return await this.say({ input: t });
       });
   }
   async say(options: Vits.Result): Promise<h> {
-    const { speaker, sdp_ratio, noise, noisew, length, language, text_prompt } = this.config;
+    const { sdp_ratio, noise, noisew, length, language, text_prompt } = this.config;
+    const speaker = typeof options.speaker_id === "number" ? Voice[options.speaker_id] : this.config.speaker;
     const payload = {
       data: [options.input, speaker, sdp_ratio, noise, noisew, length, language, null, text_prompt, "Text prompt"],
       fn_index: 0
