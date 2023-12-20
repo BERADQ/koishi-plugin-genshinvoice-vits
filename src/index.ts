@@ -16,7 +16,7 @@ class GenshinVits extends Vits {
     const { sdp_ratio, noise, noisew, length, language, text_prompt } = this.config;
     const speaker = typeof options.speaker_id === "number" ? Voice[options.speaker_id] : this.config.speaker;
     const payload = {
-      data: [options.input, speaker, sdp_ratio, noise, noisew, length, language, null, text_prompt, "Text prompt"],
+      data: [options.input, speaker, sdp_ratio, noise, noisew, length, language, null, text_prompt, "Text prompt", "", 0.7],
       fn_index: 0
     };
     const res = await this.ctx.http.post("https://v2.genshinvoice.top/run/predict", payload);
@@ -37,11 +37,11 @@ namespace GenshinVits {
   export const Config: Schema<Config> = Schema.object({
     language: Schema.union(Language).default("ZH").description("语言"),
     speaker: Schema.union(Voice).default("派蒙_ZH").description("讲者"),
-    sdp_ratio: Schema.number().default(0.2).description("SDP/DP混合比"),
-    noise: Schema.number().default(0.6).description("感情"),
-    noisew: Schema.number().default(0.8).description("音素长度"),
-    length: Schema.number().default(1.0).description("语速"),
-    text_prompt: Schema.string().default("Happy").description("用文字描述生成风格。注意只能使用英文且首字母大写单词")
+    sdp_ratio: Schema.number().step(0.1).default(0.5).description("SDP/DP混合比"),
+    noise: Schema.number().step(0.1).default(0.6).description("感情"),
+    noisew: Schema.number().step(0.1).default(0.9).description("音素长度"),
+    length: Schema.number().step(0.1).default(1.0).description("语速"),
+    text_prompt: Schema.string().default("Happy").description("用文字描述生成风格。注意只能使用英文且首字母大写单词").hidden()
   });
 }
 
