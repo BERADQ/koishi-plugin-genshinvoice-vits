@@ -37,10 +37,10 @@ namespace GenshinVits {
   export const Config: Schema<Config> = Schema.object({
     language: Schema.union(Language).default("ZH").description("语言"),
     speaker: Schema.union(Voice).default("派蒙_ZH").description("讲者"),
-    sdp_ratio: Schema.number().step(0.1).default(0.5).description("SDP/DP混合比"),
-    noise: Schema.number().step(0.1).default(0.6).description("感情"),
-    noisew: Schema.number().step(0.1).default(0.9).description("音素长度"),
-    length: Schema.number().step(0.1).default(1.0).description("语速"),
+    sdp_ratio: Schema.number().min(0).max(1).step(0.1).default(0.5).description("SDP/DP混合比"),
+    noise: Schema.number().min(0.1).max(2).step(0.1).default(0.6).description("感情"),
+    noisew: Schema.number().min(0.1).max(2).step(0.1).default(0.9).description("音素长度"),
+    length: Schema.number().min(0.1).max(2).step(0.1).default(1.0).description("语速"),
     text_prompt: Schema.string().default("Happy").description("用文字描述生成风格。注意只能使用英文且首字母大写单词").hidden()
   });
 }
