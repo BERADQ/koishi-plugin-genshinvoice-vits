@@ -1,7 +1,7 @@
 {
   "name": "koishi-plugin-genshinvoice-vits",
   "description": "群友想要的东西，所以为何不去用open-vits呢？我也不知道",
-  "version": "0.0.2",
+  "version": "0.0.9",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -22,7 +22,7 @@
     "url": "https://github.com/BERADQ/koishi-plugin-genshinvoice-vits.git"
   },
   "peerDependencies": {
-    "koishi": "^4.14.1"
+    "koishi": "^4.16.1"
   },
   "dependencies": {
     "@initencounter/vits": "^0.0.3"
