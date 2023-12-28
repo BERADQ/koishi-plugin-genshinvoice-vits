@@ -1,6 +1,6 @@
 {
   "name": "koishi-plugin-genshinvoice-vits",
-  "description": "群友想要的东西，所以为何不去用open-vits呢？我也不知道",
+  "description": "Genshin character speech synthesis",
   "version": "0.0.11",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
@@ -32,6 +32,10 @@
       "implements": [
         "vits"
       ]
+    },
+    "description": {
+      "en": "Genshin character speech synthesis",
+      "zh": "原神角色语音合成"
     }
   }
 }
