@@ -21,13 +21,21 @@
     "type": "git",
     "url": "https://github.com/BERADQ/koishi-plugin-genshinvoice-vits.git"
   },
+  "scripts": {
+    "build": "atsc -b"
+  },
   "peerDependencies": {
     "koishi": "^4.16.1"
   },
   "dependencies": {
     "@initencounter/vits": "^0.0.3"
   },
+  "devDependencies": {
+    "atsc": "^1.2.2",
+    "typescript": "^5.3.3"
+  },
   "koishi": {
+    "browser": true,
     "service": {
       "implements": [
         "vits"
