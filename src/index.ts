@@ -1,6 +1,7 @@
 import { Context, Element, h, Schema } from "koishi";
 import Vits from "@initencounter/vits";
 import { Language, Voice } from "./list";
+import { IfReplace } from "./IfReplace";
 
 class GenshinVits extends Vits {
   constructor(ctx: Context, private config: GenshinVits.Config) {
@@ -77,23 +78,6 @@ async function isay(
     payload,
   );
   return h.audio(`https://v2.genshinvoice.top/file=${res.data[1].name}`);
-}
-
-class IfReplace<T> {
-  inner: T;
-  constructor(some: T) {
-    this.inner = { ...some };
-  }
-  ifreplace<K extends keyof T>(
-    what: K,
-    some: T[K] | undefined,
-  ): typeof this.ifreplace {
-    if (typeof some != "undefined" && some != null) {
-      console.log("!");
-      this.inner[what] = some;
-    }
-    return (what: K, some: T[K]) => this.ifreplace(what, some);
-  }
 }
 
 namespace GenshinVits {
