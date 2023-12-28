@@ -1,7 +1,7 @@
 {
   "name": "koishi-plugin-genshinvoice-vits",
   "description": "群友想要的东西，所以为何不去用open-vits呢？我也不知道",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
