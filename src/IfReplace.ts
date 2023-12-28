@@ -1,3 +1,5 @@
+import { isNullable } from 'koishi'
+
 export class IfReplace<T> {
   inner: T;
   constructor(some: T) {
@@ -7,8 +9,7 @@ export class IfReplace<T> {
     what: K,
     some: T[K] | undefined,
   ): typeof this.ifreplace {
-    if (typeof some != "undefined" && some != null) {
-      console.log("!");
+    if (!isNullable(some)) {
       this.inner[what] = some;
     }
     return (what: K, some: T[K]) => this.ifreplace(what, some);

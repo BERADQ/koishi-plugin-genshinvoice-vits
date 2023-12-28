@@ -1,4 +1,4 @@
-import { Context, Element, h, Schema } from "koishi";
+import { Context, h, Schema } from "koishi";
 import Vits from "@initencounter/vits";
 import { Language, Voice } from "./list";
 import { IfReplace } from "./IfReplace";
@@ -53,7 +53,7 @@ async function isay(
   ctx: Context,
   config: GenshinVits.Config,
   input: string,
-): Promise<Element> {
+): Promise<h> {
   const { speaker, sdp_ratio, noise, noisew, length, language, text_prompt } =
     config;
   const payload = {
