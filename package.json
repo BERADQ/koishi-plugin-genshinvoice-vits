@@ -1,7 +1,7 @@
 {
   "name": "koishi-plugin-genshinvoice-vits",
   "description": "Genshin character speech synthesis",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -15,7 +15,8 @@
     "plugin",
     "vits",
     "原神",
-    "genshin"
+    "genshin",
+    "voice"
   ],
   "repository": {
     "type": "git",
@@ -31,7 +32,7 @@
     "@initencounter/vits": "^0.0.3"
   },
   "devDependencies": {
-    "atsc": "^1.2.2",
+    "atsc": "^2.0.1",
     "typescript": "^5.3.3"
   },
   "koishi": {

@@ -108,13 +108,13 @@ namespace GenshinVits {
       "音素长度",
     ),
     length: Schema.number().min(0.1).max(2).step(0.1).role("slider").default(
-      1.0,
+      1.1,
     ).description(
       "语速",
     ),
     text_prompt: Schema.string().default("Happy").description(
       "用文字描述生成风格。注意只能使用英文且首字母大写单词",
-    ).hidden(),
+    ),
   });
 }
 
