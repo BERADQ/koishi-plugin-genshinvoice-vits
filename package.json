@@ -1,7 +1,7 @@
 {
   "name": "koishi-plugin-genshinvoice-vits",
   "description": "Genshin character speech synthesis",
-  "version": "1.0.0",
+  "version": "1.1.1",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -14,9 +14,11 @@
     "koishi",
     "plugin",
     "vits",
-    "原神",
     "genshin",
-    "voice"
+    "voice",
+    "star",
+    "gs",
+    "sr"
   ],
   "repository": {
     "type": "git",
@@ -26,7 +28,7 @@
     "build": "atsc -b"
   },
   "peerDependencies": {
-    "koishi": "^4.16.1"
+    "koishi": "^4.16.4"
   },
   "dependencies": {
     "@initencounter/vits": "^0.0.3"
@@ -44,7 +46,7 @@
     },
     "description": {
       "en": "Genshin character speech synthesis",
-      "zh": "原神角色语音合成"
+      "zh": "《原神》《崩坏：星穹铁道》角色语音合成"
     }
   }
 }
