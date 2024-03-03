@@ -1,4 +1,4 @@
-import { Context, h, Schema } from "koishi";
+import { Context, h, Schema, Quester } from "koishi";
 import Vits from "@initencounter/vits";
 import { Language, Voice } from "./list";
 
@@ -19,19 +19,19 @@ class GenshinVits extends Vits {
       .option("text_prompt", "--prompt [value:string]", { fallback: config.text_prompt })
       .action(async ({ options }, input) => {
         if (/<.*\/>/gm.test(input)) return "输入的内容不是纯文本。";
-        return await isay(this.ctx, options as Required<typeof options>, input);
+        return await isay(this.ctx.http, options as Required<typeof options>, input);
       });
   }
-  async say(options: Vits.Result): Promise<h> {
+  say(options: Vits.Result): Promise<h> {
     const speaker = typeof options.speaker_id === "number"
       ? Voice[options.speaker_id]
       : this.config.speaker;
-    return isay(this.ctx, { ...this.config, speaker }, options.input);
+    return isay(this.ctx.http, { ...this.config, speaker }, options.input);
   }
 }
 
 async function isay(
-  ctx: Context,
+  http: Quester,
   config: GenshinVits.Config,
   input: string,
 ): Promise<h> {
@@ -54,11 +54,11 @@ async function isay(
     ],
     fn_index: 0,
   };
-  const res = await ctx.http.post(
+  const res = await http.post(
     "https://v2.genshinvoice.top/run/predict",
     payload,
   );
-  return h.audio(`https://v2.genshinvoice.top/file=${res.data[1].name}`);
+  return h.audio(`https://v2.genshinvoice.top/file=${res.data[1].name}`, { type: 'voice' });
 }
 
 namespace GenshinVits {
