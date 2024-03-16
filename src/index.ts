@@ -8,7 +8,7 @@ class GenshinVits extends Vits {
   };
   constructor(ctx: Context, public config: GenshinVits.Config) {
     super(ctx);
-    ctx.command("gsvits <content:text>", "语音生成", { checkArgCount: true })
+    ctx.command("gsvits <content:text>", "语音生成", { checkArgCount: true, checkUnknown: true })
       .alias("say")
       .option("speaker", "--spkr [value:string]", { fallback: config.speaker })
       .option("language", "--lang [value:string]", { fallback: config.language })
