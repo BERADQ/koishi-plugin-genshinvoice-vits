@@ -56,11 +56,12 @@ async function isay(
     ],
     fn_index: 0,
   };
+  // 以前为 v2.genshinvoice.top
   const res = await http.post(
-    "https://v2.genshinvoice.top/run/predict",
+    "https://bv2.firefly.matce.cn/run/predict",
     payload,
   );
-  return h.audio(`https://v2.genshinvoice.top/file=${res.data[1].name}`, { type: 'voice' });
+  return h.audio(`https://bv2.firefly.matce.cn/file=${res.data[1].name}`, { type: 'voice' });
 }
 
 namespace GenshinVits {
