@@ -80,21 +80,21 @@ namespace GenshinVits {
     sdp_ratio: Schema.number().min(0).max(1).step(0.05).role("slider").default(
       0.5,
     ).description(
-      "SDP/DP混合比",
+      "SDP在合成时的占比，理论上此比率越高，合成的语音语调方差越大。",
     ),
     noise: Schema.number().min(0.1).max(2).step(0.05).role("slider").default(0.6)
       .description(
-        "感情",
+        "样本噪声，控制合成的随机性。",
       ),
     noisew: Schema.number().min(0.1).max(2).step(0.05).role("slider").default(
       0.9,
     ).description(
-      "音素长度",
+      "随机时长预测器噪声，控制音素发音长度。",
     ),
     length: Schema.number().min(0.1).max(2).step(0.05).role("slider").default(
       1,
     ).description(
-      "语速",
+      "调节语音长度，相当于调节语速，该数值越大语速越慢。",
     ),
     text_prompt: Schema.string().default("Happy").description(
       "用文字描述生成风格。注意只能使用英文且首字母大写单词",
