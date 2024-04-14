@@ -1,6 +1,22 @@
 import { Context, h, Schema, Quester } from "koishi";
 import Vits from "@initencounter/vits";
 import { Language, Voice } from "./list";
+import { } from "@koishijs/plugin-help";
+
+interface Predict {
+  data: [
+    string,
+    {
+      name: string,
+      data: unknown,
+      is_file: boolean,
+      orig_name: string,
+    },
+  ],
+  is_generating: boolean,
+  duration: number,
+  average_duration: number,
+}
 
 class GenshinVits extends Vits {
   static inject = {
@@ -11,7 +27,7 @@ class GenshinVits extends Vits {
     ctx.command("gsvits <content:text>", "语音生成", { checkArgCount: true, checkUnknown: true })
       .alias("say")
       .option("speaker", "--spkr [value:string]", { fallback: config.speaker })
-      .option("language", "--lang [value:string]", { fallback: config.language })
+      .option("language", "--lang [value:string]", { fallback: config.language, hidden: true })
       .option("length", "--len [value:number]", { fallback: config.length })
       .option("noise", "[value:number]", { fallback: config.noise })
       .option("noisew", "[value:number]", { fallback: config.noisew })
@@ -57,30 +73,30 @@ async function isay(
     fn_index: 0,
   };
   // 以前为 v2.genshinvoice.top
-  const res = await http.post(
+  const res = await http.post<Predict>(
     "https://bv2.firefly.matce.cn/run/predict",
     payload,
   );
-  return h.audio(`https://bv2.firefly.matce.cn/file=${res.data[1].name}`, { type: 'voice' });
+  const file = res.data[1].name.replaceAll("\\", "/");
+  return h.audio(`https://bv2.firefly.matce.cn/file=${encodeURI(file)}`, { type: 'voice' });
 }
 
 namespace GenshinVits {
   export interface Config {
-    language: string;
-    speaker: string;
-    sdp_ratio: number;
-    noise: number;
-    noisew: number;
-    length: number;
-    text_prompt: string;
+    language: string,
+    speaker: string,
+    sdp_ratio: number,
+    noise: number,
+    noisew: number,
+    length: number,
+    text_prompt: string,
   }
   export const Config: Schema<Config> = Schema.object({
-    language: Schema.union(Language).default("ZH").description("默认语言"),
-    speaker: Schema.union(Voice).default("流萤_ZH").description("默认讲者"),
+    speaker: Schema.union(Voice).default("流萤_ZH").description("发言的角色。"),
     sdp_ratio: Schema.number().min(0).max(1).step(0.05).role("slider").default(
       0.5,
     ).description(
-      "SDP在合成时的占比，理论上此比率越高，合成的语音语调方差越大。",
+      "SDP 在合成时的占比，理论上此比率越高，合成的语音语调方差越大。",
     ),
     noise: Schema.number().min(0.1).max(2).step(0.05).role("slider").default(0.6)
       .description(
@@ -97,8 +113,9 @@ namespace GenshinVits {
       "调节语音长度，相当于调节语速，该数值越大语速越慢。",
     ),
     text_prompt: Schema.string().default("Happy").description(
-      "用文字描述生成风格。注意只能使用英文且首字母大写单词",
+      "用文字描述生成风格，注意只能使用英文且首字母大写单词。",
     ),
+    language: Schema.union(Language).default("ZH").description("语言。").hidden(),
   });
 }
 
