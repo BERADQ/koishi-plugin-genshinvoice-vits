@@ -73,12 +73,12 @@ async function isay(
     fn_index: 0,
   };
   // 以前为 v2.genshinvoice.top
-  const res = await http.post<Predict>(
+  const { data, duration } = await http.post<Predict>(
     "https://bv2.firefly.matce.cn/run/predict",
     payload,
   );
-  const file = res.data[1].name.replaceAll("\\", "/");
-  return h.audio(`https://bv2.firefly.matce.cn/file=${encodeURI(file)}`, { type: 'voice' });
+  const file = data[1].name.replaceAll("\\", "/");
+  return h.audio(`https://bv2.firefly.matce.cn/file=${encodeURI(file)}`, { type: 'voice', duration });
 }
 
 namespace GenshinVits {
