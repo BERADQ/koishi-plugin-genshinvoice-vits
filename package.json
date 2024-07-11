@@ -1,7 +1,7 @@
 {
   "name": "koishi-plugin-genshinvoice-vits",
-  "description": "Genshin character speech synthesis",
-  "version": "1.2.3",
+  "description": "Character Voice Synthesis for Genshin Impact, Honkai: Star Rail",
+  "version": "1.3.0",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -19,25 +19,19 @@
     "star",
     "gs",
     "sr",
-    "tts"
+    "tts",
+    "say"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/BERADQ/koishi-plugin-genshinvoice-vits.git"
   },
-  "scripts": {
-    "build": "atsc -b"
-  },
   "peerDependencies": {
-    "koishi": "^4.16.4"
-  },
-  "dependencies": {
-    "@initencounter/vits": "^0.0.3"
+    "koishi": "^4.17.7"
   },
   "devDependencies": {
     "@koishijs/plugin-help": "^2.4.3",
-    "atsc": "^2.0.1",
-    "typescript": "^5.4.5"
+    "@initencounter/vits": "^0.0.3"
   },
   "koishi": {
     "browser": true,
@@ -47,7 +41,7 @@
       ]
     },
     "description": {
-      "en": "Genshin character speech synthesis",
+      "en": "Character Voice Synthesis for Genshin Impact, Honkai: Star Rail",
       "zh": "《原神》《崩坏：星穹铁道》角色语音合成"
     }
   }
