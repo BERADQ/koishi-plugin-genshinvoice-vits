@@ -1,6 +1,6 @@
-import { Context, h, Schema, Quester, Service } from "koishi";
+import { Context, h, Schema, HTTP, Service } from "koishi";
 import type Vits from "@initencounter/vits";
-import { Speakers } from "./list";
+import { Speakers, Emotions } from "./list";
 import { } from "@koishijs/plugin-help";
 
 interface Predict {
@@ -32,7 +32,7 @@ class GenshinVits extends Service implements Vits {
       .option("noise", "[value:number]", { fallback: config.noise })
       .option("noisew", "[value:number]", { fallback: config.noisew })
       .option("sdp_ratio", "--sdp [value:number]", { fallback: config.sdp_ratio })
-      .option("text_prompt", "--prompt [value:string]", { fallback: config.text_prompt })
+      .option("emotion", "[value:string]", { fallback: config.emotion })
       .action(async ({ options }, input) => {
         if (!input) return "内容未输入。";
         if (/<.*\/>/gm.test(input)) return "输入的内容不是纯文本。";
@@ -48,11 +48,11 @@ class GenshinVits extends Service implements Vits {
 }
 
 async function isay(
-  http: Quester,
+  http: HTTP,
   config: GenshinVits.Config,
   input: string,
 ): Promise<h> {
-  const { speaker, sdp_ratio, noise, noisew, length, language, text_prompt } =
+  const { speaker, sdp_ratio, noise, noisew, length, language, emotion } =
     config;
   const payload = {
     data: [
@@ -66,8 +66,7 @@ async function isay(
       false,
       1,
       0.2,
-      null,
-      text_prompt,
+      emotion,
       "",
       0.7,
     ],
@@ -89,7 +88,7 @@ namespace GenshinVits {
     noise: number,
     noisew: number,
     length: number,
-    text_prompt: string,
+    emotion: string,
   }
   export const Config: Schema<Config> = Schema.object({
     speaker: Schema.union(Speakers).default("派蒙_ZH").description("发言的角色。"),
@@ -112,8 +111,8 @@ namespace GenshinVits {
     ).description(
       "调节语音长度，相当于调节语速，该数值越大语速越慢。",
     ),
-    text_prompt: Schema.string().default("Happy").description(
-      "用文字描述生成风格，注意只能使用英文且首字母大写单词。",
+    emotion: Schema.union(Emotions).default("中立/neutral").description(
+      "情感。",
     ),
     language: Schema.union(["ZH"] as string[]).default("ZH").description("语言。").hidden(),
   });
