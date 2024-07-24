@@ -24,7 +24,7 @@ class GenshinVits extends Service implements Vits {
   };
   constructor(ctx: Context, public config: GenshinVits.Config) {
     super(ctx, "vits", true);
-    ctx.command("gsvits <content:text>", "语音生成", { checkUnknown: true })
+    ctx.command("vits <content:text>", "语音生成", { checkUnknown: true })
       .alias("say")
       .option("speaker", "--spkr [value:string]", { fallback: config.speaker })
       .option("language", "--lang [value:string]", { fallback: config.language, hidden: true })

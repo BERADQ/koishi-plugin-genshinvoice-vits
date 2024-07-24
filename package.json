@@ -1,7 +1,7 @@
 {
   "name": "koishi-plugin-genshinvoice-vits",
   "description": "Character Voice Synthesis for Genshin Impact, Honkai: Star Rail, Wuthering Waves, Zenless Zone Zero",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "main": "lib/index.js",
   "typings": "lib/index.d.ts",
   "files": [
@@ -24,7 +24,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/BERADQ/koishi-plugin-genshinvoice-vits.git"
+    "url": "git+https://github.com/BERADQ/koishi-plugin-genshinvoice-vits.git"
   },
   "peerDependencies": {
     "koishi": "^4.17.7"
